@@ -1,0 +1,23 @@
+---
+// Titular de sección (antetítulo + título + texto). Adaptado de AstroWind (Headline.astro), © onWidget, MIT.
+// `destacado`: final del título con el subrayado a pincel (campo `titulo_destacado` de la sección).
+import { resaltar } from '../../data/site';
+interface Props { titulo?: string; destacado?: string; antetitulo?: string; texto?: string; alinear?: 'izquierda' | 'centro'; class?: string; nivel?: 1 | 2 }
+const { titulo, destacado, antetitulo, texto, alinear = 'izquierda', class: clase = '', nivel = 2 } = Astro.props;
+const H = nivel === 1 ? 'h1' : 'h2';
+const t = resaltar(titulo, destacado);
+---
+
+{
+  (titulo || antetitulo || texto) && (
+    <div class:list={['titular', { 'mx-auto text-center': alinear === 'centro' }, clase]}>
+      {antetitulo && <p class="antetitulo">{antetitulo}</p>}
+      {(titulo || destacado) && (
+        <H class="titulo-seccion">
+          {t.antes}{t.marca && <span class="pincel">{t.marca}</span>}{t.despues}
+        </H>
+      )}
+      {texto && <p class:list={['titular-texto', { 'mx-auto': alinear === 'centro' }]}>{texto}</p>}
+    </div>
+  )
+}

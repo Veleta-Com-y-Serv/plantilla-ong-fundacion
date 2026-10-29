@@ -1,0 +1,102 @@
+/* ONG y fundación — estilo humano: bandas a sangre en azul, naranja y blanco; serif cálida enorme con
+   subrayado a pincel; fotos con una esquina muy redondeada («de casa»); cifras de impacto en naranja pleno. */
+@import "tailwindcss";
+@import "./comun.css";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --fuente-texto: system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+  --fuente-titulos: "Iowan Old Style", "Sitka Heading", Charter, "Bitstream Charter", Cambria, Georgia, "Times New Roman", serif;
+  --radio: .6rem; --ritmo: 4.5rem; --ritmo-md: 7.5rem; --ancho: 90rem;
+  --alto-cab: 4.5rem;
+  /* Derivados de los cuatro colores del cliente */
+  --c-noche: color-mix(in srgb, var(--c-primario) 62%, #000);
+  --c-cielo: color-mix(in srgb, var(--c-primario) 8%, var(--c-fondo));
+  --c-arena: color-mix(in srgb, var(--c-acento) 14%, var(--c-fondo));
+  --c-sobre-acento: color-mix(in srgb, var(--c-primario) 45%, #000);
+  --c-linea: color-mix(in srgb, var(--c-texto) 14%, transparent);
+  --esquina: clamp(3rem, 9vw, 9rem);
+}
+
+@layer base {
+  body { font-family: var(--fuente-texto); font-size: 1.0625rem; line-height: 1.65; background: var(--c-fondo); }
+  h1, h2, h3 { font-family: var(--fuente-titulos); font-weight: 700; letter-spacing: -0.015em; line-height: 1.04; }
+  main { padding-top: var(--alto-cab); }
+}
+
+@layer components {
+  /* Antetítulo: mayúsculas espaciadas con una raya naranja delante */
+  .antetitulo { display: inline-flex; align-items: center; gap: .75rem; font-family: var(--fuente-texto); font-size: .8rem; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
+  .antetitulo::before { content: ""; width: 2.25rem; height: 3px; border-radius: 3px; background: var(--c-acento); flex-shrink: 0; }
+  .banda-naranja .antetitulo::before, .banda-arena .antetitulo::before { background: currentColor; }
+  .titulo-seccion { font-size: clamp(2.3rem, 6vw, 4.4rem); margin-top: .9rem; }
+  .titulo-enorme { font-size: clamp(2.7rem, 9vw, 6.8rem); line-height: .98; }
+  .titular { max-width: 46rem; }
+  .titular-texto { margin-top: 1.1rem; font-size: 1.15rem; opacity: .85; max-width: 40rem; }
+
+  /* Palabra subrayada a pincel: la pincelada es una máscara, así sigue el color de acento del cliente */
+  .pincel { position: relative; display: inline; white-space: normal; z-index: 0; }
+  .pincel::after {
+    content: ""; position: absolute; left: -.04em; right: -.04em; bottom: -.08em; height: .32em; z-index: -1;
+    background: var(--c-acento);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 30' preserveAspectRatio='none'%3E%3Cpath d='M4 18C60 8 140 6 210 9s130 5 186 1c3 0 4 3 1 5-52 9-124 12-196 11S52 24 6 27c-4 0-6-7-2-9z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 30' preserveAspectRatio='none'%3E%3Cpath d='M4 18C60 8 140 6 210 9s130 5 186 1c3 0 4 3 1 5-52 9-124 12-196 11S52 24 6 27c-4 0-6-7-2-9z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+
+  /* Botones píldora de 52 px: naranja con texto oscuro (el blanco no se lee sobre naranja) */
+  .btn { border-radius: 999px; min-height: 3.25rem; padding-inline: 1.75rem; background: var(--c-acento); color: var(--c-sobre-acento); font-weight: 800; letter-spacing: .01em; box-shadow: 0 .5rem 1.5rem -0.6rem color-mix(in srgb, var(--c-acento) 70%, transparent); }
+  .btn:hover { background: color-mix(in srgb, var(--c-acento) 85%, #fff); transform: translateY(-1px); }
+  .btn-sec { border-radius: 999px; min-height: 3.25rem; padding-inline: 1.75rem; background: transparent; color: currentColor; font-weight: 750; box-shadow: inset 0 0 0 2px currentColor; }
+  .btn-sec:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .btn-azul { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding-block: .65rem; text-decoration: none; cursor: pointer; line-height: 1.2; text-align: center; transition: transform .15s ease, background-color .15s ease; }
+  .btn-azul { border-radius: 999px; min-height: 3.25rem; padding-inline: 1.75rem; background: var(--c-primario); color: #fff; font-weight: 800; }
+  .btn-azul:hover { background: var(--c-noche); }
+  .enlace-flecha { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; font-weight: 750; text-decoration: none; border-bottom: 2px solid var(--c-acento); }
+  .enlace-flecha:hover { gap: .8rem; }
+
+  /* Esquina «de casa»: una esquina muy redondeada en las fotos */
+  .esquina-ad { border-top-right-radius: var(--esquina); }
+  .esquina-ai { border-top-left-radius: var(--esquina); }
+  .esquina-bd { border-bottom-right-radius: var(--esquina); }
+
+  /* Bandas */
+  .banda-noche { background: var(--c-noche); color: #fff; }
+  .banda-azul { background: var(--c-primario); color: #fff; }
+  .banda-naranja { background: var(--c-acento); color: var(--c-sobre-acento); }
+  .banda-cielo { background: var(--c-cielo); }
+  .banda-arena { background: var(--c-arena); }
+
+  /* Mitades a sangre (filas 50/50): el texto se alinea con el contenedor de 90 rem por su lado exterior */
+  .mitad { padding: var(--ritmo) 1rem; }
+  @media (min-width: 768px) {
+    .mitad { padding-block: var(--ritmo-md); }
+    .mitad--izq { padding-left: max(2rem, calc((100vw - var(--ancho)) / 2 + 2rem)); padding-right: clamp(2rem, 5vw, 5.5rem); }
+    .mitad--der { padding-right: max(2rem, calc((100vw - var(--ancho)) / 2 + 2rem)); padding-left: clamp(2rem, 5vw, 5.5rem); }
+  }
+
+  /* Cabecera fija: transparente sobre el hero (con JavaScript) y sólida al bajar */
+  .cabecera--humana { position: fixed; inset: 0 0 auto 0; background: var(--c-fondo); color: var(--c-texto); box-shadow: 0 1px 0 var(--c-linea); transition: background-color .25s ease, color .25s ease, box-shadow .25s ease; }
+  .cabecera--humana .contenedor { max-width: var(--ancho); }
+  .cabecera--humana .cabecera-fila { min-height: var(--alto-cab); }
+  .cabecera--humana.cabecera--sobre-hero { background: transparent; color: #fff; box-shadow: none; }
+  .cabecera--humana .marca-inicial { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 999px 999px 999px .35rem; background: var(--c-acento); color: var(--c-sobre-acento); font-family: var(--fuente-titulos); font-weight: 800; font-size: 1.35rem; }
+  .cabecera--humana .marca-nombre { font-family: var(--fuente-titulos); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em; }
+  .cabecera--humana .cabecera-nav { gap: 1.75rem; }
+  .cabecera--humana .cabecera-nav a { font-weight: 650; font-size: .98rem; padding-block: .6rem; background: linear-gradient(var(--c-acento), var(--c-acento)) left bottom / 0 2px no-repeat; transition: background-size .2s ease; }
+  .cabecera--humana .cabecera-nav a:hover { background-size: 100% 2px; }
+  .cabecera--humana .cabecera-cta { min-height: 2.9rem; }
+  .cabecera--humana .menu-movil summary { min-height: 2.75rem; min-width: 2.75rem; padding-inline: .25rem; }
+  .cabecera--humana .menu-movil-panel { padding-inline: 1rem; }
+  .cabecera--humana .menu-movil-panel a { min-height: 2.75rem; display: flex; align-items: center; font-weight: 650; }
+
+  /* Pie azul noche con franja naranja */
+  .pie--humano { background: var(--c-noche); color: #fff; border-top: 6px solid var(--c-acento); padding-top: 4.5rem; }
+  .pie--humano .contenedor { max-width: var(--ancho); }
+  .pie--humano .pie-nombre { font-family: var(--fuente-titulos); font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.05; }
+  .pie--humano .pie-titulo { color: var(--c-acento); opacity: 1; font-weight: 750; letter-spacing: .16em; }
+  .pie--humano .pie-redes a { border-radius: 999px; padding: .6rem; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .3); }
+  @media (min-width: 768px) { .pie--humano .pie-rejilla { grid-template-columns: 2fr 1.3fr 1fr 1.2fr; } }
+
+  .campo input, .campo textarea, .campo select { border-radius: .6rem; background: var(--c-fondo); border: 2px solid var(--c-linea); }
+  .campo input:focus, .campo textarea:focus { border-color: var(--c-primario); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-acento) 45%, transparent); }
+}

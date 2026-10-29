@@ -1,0 +1,164 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+nombre: Fundación Llar
+eslogan: Acompañamos a personas mayores y familias de Oviedo para que nadie se quede solo.
+sector: fundacion
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#123e7c"
+  acento: "#ff7a1a"
+  fondo: "#ffffff"
+  texto: "#16233b"
+contacto:
+  telefono: "985 20 41 77"
+  email: hola@fundacionllar.org
+  direccion: Calle Fruela 14, 2.º, 33007 Oviedo (Asturias)
+  horario: "Lunes a viernes de 9:00 a 14:00 y de 16:30 a 19:00."
+  whatsapp: "+34 644 20 41 77"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Qué hacemos, url: "/#proyectos" }
+  - { texto: Cómo ayudar, url: "/#ayudar" }
+  - { texto: Transparencia, url: "/#transparencia" }
+  - { texto: Noticias, url: "/#noticias" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Dona ahora, url: "/#ayudar" }
+seo:
+  titulo: Fundación Llar · Acompañamiento y ayuda social en Oviedo
+  descripcion: "Fundación de Oviedo que acompaña a personas mayores que viven solas y a familias vulnerables. Hazte socio, dona o ven de voluntario."
+  tipo: NGO
+marca_pie: true
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Fundación social en Oviedo desde 2006
+    titulo: Que nadie pase el invierno solo.
+    titulo_destacado: el invierno solo.   # parte del titular subrayada a pincel (si no está en el título, va detrás)
+    texto: "Llamamos, visitamos y acompañamos a personas mayores que viven solas, y echamos una mano a las familias que lo están pasando mal. Con tu ayuda llegamos a más casas."
+    imagen: /fotos/hero.jpg
+    sello: Gracias a 380 voluntarios   # texto corto del sello redondo
+    cta: { texto: Dona ahora, url: "/#ayudar" }
+    cta_secundario: { texto: Hazte voluntario, url: "/#ayudar" }
+
+  cifras:
+    activa: true
+    antetitulo: Nuestro impacto en 2025
+    titulo: Lo que hicimos el año pasado entre todos
+    texto: "Datos de la memoria anual, revisada por una auditoría externa."
+    items:
+      - { titulo: "1.240", texto: personas mayores acompañadas }
+      - { titulo: "18.600", texto: visitas y llamadas }
+      - { titulo: "312", texto: familias con la despensa cubierta }
+      - { titulo: "380", texto: voluntarios activos }
+
+  sobre:
+    activa: true
+    antetitulo: Quiénes somos
+    titulo: "Una fundación pequeña, de barrio."
+    titulo_destacado: de barrio.
+    texto: "Nacimos en 2006 en el barrio de Pumarín, cuando un grupo de vecinas empezó a llamar cada tarde a las personas mayores de su portal. Hoy somos una fundación con equipo propio y cientos de voluntarios, pero seguimos trabajando igual: casa por casa y con nombre propio.\n\nTrabajamos con los servicios sociales del Ayuntamiento, los centros de salud y las parroquias para llegar a quien más lo necesita y no duplicar ayudas."
+    imagen: /fotos/sobre.jpg
+    items:
+      - { titulo: Cercanía, texto: "Cada persona tiene un voluntario de referencia." }
+      - { titulo: Constancia, texto: "No hacemos campañas sueltas: acompañamos todo el año." }
+      - { titulo: Transparencia, texto: "Cuentas auditadas y memoria pública cada junio." }
+    cta: { texto: Conoce al equipo, url: "/#equipo" }
+
+  proyectos:
+    activa: true
+    antetitulo: Qué hacemos
+    titulo: Nuestros proyectos
+    texto: "Cinco programas que se sostienen con cuotas de socios, donativos y el tiempo de mucha gente."
+    proyectos:
+      - { titulo: Nadie Solo, texto: "Visitas semanales y una llamada diaria a personas mayores que viven solas. Paseos, recados y compañía.", lugar: "Oviedo y Siero", imagen: /fotos/proyecto-1.jpg }
+      - { titulo: Despensa Llar, texto: "Alimentos frescos y productos de higiene cada quince días para familias derivadas por servicios sociales.", lugar: Pumarín y Ventanielles, imagen: /fotos/proyecto-2.jpg }
+      - { titulo: Deberes en compañía, texto: "Refuerzo escolar por las tardes para niños de primaria, con merienda incluida.", lugar: Centro social de La Corredoria, imagen: /fotos/proyecto-3.jpg }
+      - { titulo: Primer empleo, texto: "Orientación, cursos cortos y acompañamiento a entrevistas para jóvenes y mujeres.", lugar: Oviedo, imagen: /fotos/proyecto-4.jpg }
+      - { titulo: Agua en Matagalpa, texto: "Cooperación con dos comunidades rurales para llevar agua potable a la escuela y al centro de salud.", lugar: Matagalpa (Nicaragua), imagen: /fotos/proyecto-5.jpg }
+    cta: { texto: Quiero colaborar, url: "/#ayudar" }
+
+  cita:
+    activa: true
+    declaracion: "Lo que más agradecen no es la compra ni el recado. Es que alguien llame a la puerta y pregunte qué tal han dormido."
+    autor: Covadonga F.
+    cargo: Voluntaria del programa Nadie Solo
+    imagen: /fotos/cita.jpg
+
+  ayudar:
+    activa: true
+    antetitulo: Cómo ayudar
+    titulo: Elige cómo quieres sumarte
+    texto: "Con dinero, con tiempo o con las dos cosas. Todas las formas cuentan."
+    items:
+      - { titulo: Haz un donativo, texto: "Una aportación puntual por Bizum o transferencia. Te enviamos el certificado para Hacienda.", icono: corazon, url: "/#contacto", boton: Quiero donar }
+      - { titulo: Hazte socio, texto: "Una cuota mensual nos permite planificar el año y no dejar a nadie a medias.", icono: usuarios, url: "/#contacto", boton: Hacerme socio }
+      - { titulo: Ven de voluntario, texto: "Dos horas a la semana bastan. Te formamos y te acompañamos en tus primeras visitas.", icono: mano, url: "/#contacto", boton: Apuntarme }
+    nota: "Los donativos a la fundación desgravan en la declaración de la renta y en el impuesto de sociedades."
+
+  equipo:
+    activa: true
+    antetitulo: El equipo
+    titulo: Las personas detrás de Llar
+    texto: "Un equipo técnico pequeño y un patronato que no cobra por su trabajo."
+    personas:
+      - { nombre: Marta Suárez, cargo: Directora, foto: /placeholders/persona.svg }
+      - { nombre: Iván Menéndez, cargo: Coordinador de voluntariado, foto: /placeholders/persona.svg }
+      - { nombre: Lucía Prendes, cargo: Trabajadora social, foto: /placeholders/persona.svg }
+      - { nombre: Alberto Cuesta, cargo: Cooperación internacional, foto: /placeholders/persona.svg }
+      - { nombre: Pilar Alonso, cargo: Presidenta del patronato, foto: /placeholders/persona.svg }
+
+  transparencia:
+    activa: true
+    antetitulo: Transparencia
+    titulo: Cada euro, a la vista
+    texto: "Publicamos las cuentas, la memoria y quién forma el patronato. Si tienes cualquier duda, pregúntanos."
+    reparto:
+      - { titulo: Proyectos, porcentaje: "84 %" }
+      - { titulo: Captación de fondos, porcentaje: "9 %" }
+      - { titulo: Administración, porcentaje: "7 %" }
+    items:
+      - { titulo: Cuentas auditadas, texto: "Auditoría externa independiente cada año.", icono: escudo, url: "/#contacto" }
+      - { titulo: Memoria anual, texto: "Qué hicimos, con quién y cuánto costó.", icono: grafico, url: "/#contacto" }
+      - { titulo: Registro de fundaciones, texto: "Inscrita en el registro de fundaciones del Principado de Asturias.", icono: balanza, url: "" }
+      - { titulo: Código ético, texto: "Cómo elegimos a quién ayudamos y cómo cuidamos tus datos.", icono: hoja, url: "" }
+    cta: { texto: Pídenos la memoria, url: "/#contacto" }
+
+  noticias:
+    activa: true
+    antetitulo: Noticias
+    titulo: Lo último de la fundación
+    noticias:
+      - { fecha: 20 oct 2026, categoria: Voluntariado, titulo: Buscamos voluntarios para las tardes de invierno, texto: "Sobre todo en La Corredoria y en el Antiguo. Formación el 7 de noviembre.", imagen: /fotos/noticia-1.jpg, url: "" }
+      - { fecha: 2 oct 2026, categoria: Despensa, titulo: La recogida de otoño llena la despensa hasta Navidad, texto: "Gracias a los colegios y supermercados del barrio que se sumaron.", imagen: /fotos/noticia-2.jpg, url: "" }
+      - { fecha: 15 sep 2026, categoria: Cooperación, titulo: "Matagalpa ya tiene agua en la escuela", texto: "Terminamos la primera fase del proyecto con la comunidad de El Tuma.", imagen: /fotos/noticia-3.jpg, url: "" }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que cuentan quienes nos conocen
+    testimonios:
+      - { texto: "Desde que viene Ana los martes, mi madre vuelve a bajar al parque. Para nosotros, que vivimos lejos, es una tranquilidad enorme.", autor: Begoña R., cargo: Hija de una usuaria }
+      - { texto: "Empecé por probar y ya llevo cuatro años. Te dan formación y nunca te sientes sola en una visita difícil.", autor: Javier M., cargo: Voluntario desde 2022 }
+      - { texto: "Son serios, rápidos y conocen a cada familia. Trabajar con ellos es fácil.", autor: Elena G., cargo: Trabajadora social }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Lo que nos preguntan antes de colaborar
+    preguntas:
+      - { pregunta: "¿Mi donativo desgrava?", respuesta: "Sí. Somos una fundación acogida a la ley de mecenazgo: te enviamos el certificado y lo deduces en la declaración de la renta. Solo necesitamos tu nombre completo y tu DNI." }
+      - { pregunta: "¿Cuánto tiempo hace falta para ser voluntario?", respuesta: "Con dos horas a la semana es suficiente. Antes de empezar hacemos una formación de una tarde y la primera visita la haces acompañado." }
+      - { pregunta: "¿Puedo darme de baja como socio cuando quiera?", respuesta: "Sí, en cualquier momento y sin dar explicaciones. Basta con un correo o una llamada." }
+      - { pregunta: "¿Cómo pido ayuda para un familiar o un vecino?", respuesta: "Llámanos o escríbenos. Una trabajadora social te llamará en pocos días para conocer la situación y ver cómo podemos ayudar." }
+      - { pregunta: "¿Aceptáis donaciones de ropa o muebles?", respuesta: "Ahora mismo solo alimentos no perecederos y productos de higiene. Si tienes otra cosa, pregúntanos y te decimos a qué entidad le puede servir." }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Hablemos
+    texto: "Para colaborar, pedir ayuda o preguntar cualquier cosa. Te respondemos en uno o dos días."

@@ -1,0 +1,64 @@
+---
+// Hero a pantalla casi completa: foto a sangre con velo azul noche, titular serif enorme con el final
+// subrayado a pincel (`titulo_destacado`), texto corto, dos botones y un sello redondo naranja (`sello`).
+// Si es la primera sección, sube bajo la cabecera fija (que se vuelve transparente encima).
+import { seccion, campo, resaltar } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const destacado = campo(s, 'titulo_destacado');
+const sello = campo(s, 'sello');
+const t = resaltar(s?.titulo, destacado);
+---
+
+{
+  s && (
+    <section id={id} data-hero-sangre={primera ? '' : undefined} class:list={['hero banda-noche relative isolate flex min-h-[92svh] items-end overflow-hidden', { 'hero--primera': primera }]}>
+      {s.imagen && <Imagen src={s.imagen} alt={altHero()} ancho={1920} alto={1080} prioridad={primera} class="absolute inset-0 -z-20 h-full w-full object-cover" />}
+      <div class="hero-velo absolute inset-0 -z-10" aria-hidden="true" />
+      <div class="contenedor relative w-full pb-14 pt-36 md:pb-24 md:pt-44">
+        {sello && <p class="hero-sello-movil mb-5 inline-flex md:hidden">{sello}</p>}
+        {s.antetitulo && <p class="antetitulo text-white">{s.antetitulo}</p>}
+        <h1 class="titulo-enorme mt-5 max-w-[16ch] text-white">
+          {t.antes}{t.marca && <span class="pincel">{t.marca}</span>}{t.despues}
+        </h1>
+        {s.texto && <p class="mt-7 max-w-2xl text-lg text-white/90 md:text-xl">{s.texto}</p>}
+        {(s.cta?.url || s.cta_secundario?.url) && (
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {s.cta?.url && <a class="btn" href={s.cta.url}>{s.cta.texto}</a>}
+            {s.cta_secundario?.url && <a class="btn-sec text-white" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+          </div>
+        )}
+      </div>
+      {sello && (
+        <p class="hero-sello hidden md:grid" aria-hidden="true">
+          <span>{sello}</span>
+        </p>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .hero--primera { margin-top: calc(-1 * var(--alto-cab)); }
+  .hero-velo {
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, var(--c-noche) 60%, transparent) 0, transparent 9rem),
+      linear-gradient(to top, color-mix(in srgb, var(--c-noche) 94%, transparent) 0%, color-mix(in srgb, var(--c-noche) 55%, transparent) 45%, color-mix(in srgb, var(--c-noche) 25%, transparent) 100%),
+      linear-gradient(to right, color-mix(in srgb, var(--c-noche) 60%, transparent), transparent 70%);
+  }
+  .hero-sello {
+    position: absolute; right: clamp(2rem, 6vw, 7rem); top: calc(var(--alto-cab) + 3.5rem);
+    width: 10.5rem; height: 10.5rem; place-items: center; padding: 1.4rem; border-radius: 999px;
+    background: var(--c-acento); color: var(--c-sobre-acento); text-align: center;
+    font-family: var(--fuente-titulos); font-weight: 700; font-size: 1.15rem; line-height: 1.15;
+    transform: rotate(-8deg); box-shadow: 0 1.5rem 3rem -1rem rgb(0 0 0 / .45);
+  }
+  .hero-sello::before { content: ""; position: absolute; inset: .45rem; border-radius: inherit; border: 2px dashed color-mix(in srgb, var(--c-sobre-acento) 45%, transparent); }
+  .hero-sello-movil {
+    padding: .35rem .9rem; border-radius: 999px;
+    background: var(--c-acento); color: var(--c-sobre-acento); font-weight: 750; font-size: .85rem;
+  }
+</style>

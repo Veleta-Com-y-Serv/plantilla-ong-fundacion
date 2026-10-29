@@ -1,0 +1,48 @@
+---
+// Apartado de texto genérico: con imagen, fila 50/50 a sangre (la foto toca el borde derecho de la ventana);
+// sin imagen, banda con el título a la izquierda y los párrafos a la derecha. Lista con iconos y botón opcionales.
+// Lo usan los apartados nuevos que pide el cliente (site.yaml: `tipo: texto`).
+import { seccion, campo, parrafos } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const destacado = campo(s, 'titulo_destacado');
+const items = (s?.items ?? []).filter((it) => it && it.titulo);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class:list={['grid', s.imagen ? 'md:grid-cols-2' : 'banda-cielo']}>
+      <div class:list={[s.imagen ? 'mitad mitad--izq' : 'contenedor seccion grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-20']}>
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} destacado={destacado} />
+        <div>
+          <div class:list={['space-y-4 text-lg opacity-90', { 'mt-7': s.imagen }]}>
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {items.length > 0 && (
+            <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+              {items.map((it) => (
+                <li class="flex gap-4">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-acento text-[var(--c-sobre-acento)]"><Icono nombre={it.icono} tam={20} /></span>
+                  <div>
+                    <p class="font-bold">{it.titulo}</p>
+                    {it.texto && <p class="opacity-80">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {s.cta?.url && <a class="btn mt-9" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+      </div>
+      {s.imagen && (
+        <div class="relative order-first min-h-[22rem] sm:min-h-[28rem] md:order-none md:min-h-full">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={1500} class="esquina-ai absolute inset-0 h-full w-full object-cover" />
+        </div>
+      )}
+    </section>
+  )
+}

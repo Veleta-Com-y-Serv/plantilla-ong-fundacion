@@ -1,0 +1,20 @@
+---
+// Página no encontrada con el diseño de la plantilla: banda azul a todo el ancho y número enorme a pincel.
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const cta = site.boton_cabecera;
+---
+
+<Base titulo="Página no encontrada">
+  <section class="banda-azul flex min-h-[75svh] items-center">
+    <div class="contenedor seccion">
+      <p class="antetitulo">Error 404</p>
+      <h1 class="titulo-enorme mt-5 max-w-[14ch]">Esta página <span class="pincel">no existe</span></h1>
+      <p class="mt-6 max-w-xl text-lg text-white/85">Puede que el enlace esté mal o que la página se haya movido.</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a class="btn" href="/">Volver al inicio</a>
+        {cta && cta.url && <a class="btn-sec" href={cta.url}>{cta.texto}</a>}
+      </div>
+    </div>
+  </section>
+</Base>

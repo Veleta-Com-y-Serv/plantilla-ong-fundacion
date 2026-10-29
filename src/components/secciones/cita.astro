@@ -1,0 +1,42 @@
+---
+// Cita grande a todo el ancho: foto a sangre con velo azul noche (o azul pleno sin foto), comillas naranjas
+// gigantes y la frase en serif cursiva enorme. Campos: declaracion (o texto), autor, cargo, imagen.
+import { seccion, campo } from '../../data/site';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const frase = campo(s, 'declaracion') || (s?.texto ?? '');
+const autor = campo(s, 'autor');
+const cargo = campo(s, 'cargo');
+---
+
+{
+  s && frase && (
+    <section id={Astro.props.id} class="cita banda-azul relative isolate overflow-hidden">
+      {s.imagen && <Imagen src={s.imagen} alt="" ancho={2100} alto={900} class="absolute inset-0 -z-20 h-full w-full object-cover" />}
+      {s.imagen && <div class="cita-velo absolute inset-0 -z-10" aria-hidden="true" />}
+      <figure class="contenedor seccion relative">
+        <span class="cita-comillas" aria-hidden="true">“</span>
+        <blockquote class="relative max-w-[30ch] font-display text-[clamp(1.9rem,4.8vw,4.1rem)] font-semibold italic leading-[1.12] text-white">
+          {frase}
+        </blockquote>
+        {(autor || cargo) && (
+          <figcaption class="mt-10 flex items-center gap-4 text-white">
+            <span class="h-[3px] w-12 rounded bg-acento" aria-hidden="true" />
+            <span>
+              {autor && <strong class="block text-lg">{autor}</strong>}
+              {cargo && <span class="block text-white/80">{cargo}</span>}
+            </span>
+          </figcaption>
+        )}
+      </figure>
+    </section>
+  )
+}
+
+<style>
+  .cita { min-height: 70svh; display: flex; align-items: center; }
+  .cita > figure { width: 100%; }
+  .cita-velo { background: linear-gradient(to right, color-mix(in srgb, var(--c-noche) 92%, transparent) 0%, color-mix(in srgb, var(--c-noche) 70%, transparent) 55%, color-mix(in srgb, var(--c-noche) 35%, transparent) 100%); }
+  .cita-comillas { display: block; height: .55em; margin-bottom: .1em; font-family: var(--fuente-titulos); font-size: clamp(8rem, 20vw, 16rem); line-height: 1; color: var(--c-acento); }
+</style>

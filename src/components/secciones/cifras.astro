@@ -1,0 +1,45 @@
+---
+// Banda de impacto en naranja pleno: titular a la izquierda y las cifras enormes en serif separadas por filetes.
+// Cada cifra: `items[]` {titulo (el número, como texto), texto}. Sin cifras no se pinta la banda.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const items = (s?.items ?? []).filter((it) => it && it.titulo);
+---
+
+{
+  s && items.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda-naranja relative overflow-hidden">
+      <svg class="cifras-adorno" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M100 172s-64-36-64-88a36 36 0 0 1 64-22 36 36 0 0 1 64 22c0 52-64 88-64 88z" />
+      </svg>
+      <div class="relative grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div>
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-seccion max-w-[18ch]">{s.titulo}</h2>}
+        </div>
+        {s.texto && <p class="text-lg font-medium lg:max-w-md lg:justify-self-end">{s.texto}</p>}
+      </div>
+      <ul class:list={['cifras-lista relative mt-12 grid grid-cols-2 md:mt-16', items.length >= 4 ? 'lg:grid-cols-4' : items.length === 3 ? 'lg:grid-cols-3' : '']}>
+        {items.map((it) => (
+          <li class="cifra">
+            <p class="cifra-numero">{it.titulo}</p>
+            {it.texto && <p class="mt-2 max-w-[16ch] text-base font-semibold md:text-lg">{it.texto}</p>}
+          </li>
+        ))}
+      </ul>
+    </Seccion>
+  )
+}
+
+<style>
+  .cifras-adorno { position: absolute; right: -6rem; bottom: -7rem; width: 28rem; height: 28rem; fill: none; stroke: color-mix(in srgb, var(--c-sobre-acento) 14%, transparent); stroke-width: 10; pointer-events: none; }
+  .cifras-lista { border-top: 2px solid color-mix(in srgb, var(--c-sobre-acento) 30%, transparent); }
+  .cifra { padding: 1.75rem 1rem 0 0; }
+  .cifra-numero { font-family: var(--fuente-titulos); font-weight: 700; font-size: clamp(2.6rem, 8.5vw, 6.2rem); line-height: .95; letter-spacing: -0.03em; overflow-wrap: anywhere; }
+  @media (min-width: 1024px) {
+    .cifra { padding: 2.5rem 1.5rem 0; border-left: 2px solid color-mix(in srgb, var(--c-sobre-acento) 30%, transparent); }
+    .cifra:first-child { border-left: 0; padding-left: 0; }
+  }
+</style>

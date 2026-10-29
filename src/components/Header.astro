@@ -1,0 +1,63 @@
+---
+// Cabecera fija a todo el ancho: marca + menú (site.yaml → menu) + botón de donar (boton_cabecera).
+// Sólida por defecto; con JavaScript, transparente sobre el hero a sangre hasta que se baja.
+// En móvil, menú plegable sin JavaScript (<details>). Aspecto: src/styles/global.css (.cabecera--humana).
+import { site } from '../data/site';
+import type { Enlace } from '../data/site';
+interface Props { variante?: string; cta?: Enlace | null }
+const { variante = 'humana', cta = null } = Astro.props;
+---
+
+<header class={`cabecera cabecera--${variante}`}>
+  <div class="contenedor cabecera-fila">
+    <a href="/" class="marca" aria-label={`${site.nombre}, inicio`}>
+      {
+        site.logo ? (
+          <img src={site.logo} alt={site.nombre} class="marca-logo" width="160" height="40" />
+        ) : (
+          <>
+            <span class="marca-inicial" aria-hidden="true">{site.nombre.trim().charAt(0)}</span>
+            <span class="marca-nombre">{site.nombre}</span>
+          </>
+        )
+      }
+    </a>
+    <nav class="cabecera-nav" aria-label="Menú principal">
+      {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+    </nav>
+    {cta && cta.url && <a href={cta.url} class="btn cabecera-cta">{cta.texto}</a>}
+    {
+      site.menu.length > 0 && (
+        <details class="menu-movil">
+          <summary aria-label="Abrir el menú">
+            <span class="menu-movil-icono" aria-hidden="true" />
+            <span>Menú</span>
+          </summary>
+          <nav class="menu-movil-panel" aria-label="Menú">
+            {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+            {cta && cta.url && <a href={cta.url} class="btn">{cta.texto}</a>}
+          </nav>
+        </details>
+      )
+    }
+  </div>
+</header>
+<script is:inline>
+  // La cabecera va antes que el hero en la página: se espera a que esté todo el HTML.
+  document.addEventListener('DOMContentLoaded', function () {
+    var cab = document.querySelector('.cabecera');
+    var hero = document.querySelector('[data-hero-sangre]');
+    var menu = cab && cab.querySelector('.menu-movil');
+    document.querySelectorAll('.menu-movil a').forEach(function (a) {
+      a.addEventListener('click', function () { a.closest('details').open = false; });
+    });
+    if (!cab || !hero) return;
+    function pintar() {
+      var abierto = menu && menu.open;
+      cab.classList.toggle('cabecera--sobre-hero', !abierto && window.scrollY < 40);
+    }
+    pintar();
+    window.addEventListener('scroll', pintar, { passive: true });
+    if (menu) menu.addEventListener('toggle', pintar);
+  });
+</script>

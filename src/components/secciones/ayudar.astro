@@ -1,0 +1,69 @@
+---
+// Cómo ayudar: titular y, debajo, paneles de color pleno de borde a borde (naranja, azul, arena…), uno por
+// forma de colaborar, con icono, texto y botón. Cada forma: `items[]` {titulo, texto, icono, url, boton}.
+// Sin `url`, el botón lleva al formulario de contacto; sin `boton`, usa el título. `nota`: aviso bajo los paneles.
+import { seccion, campo, externo } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const items = (s?.items ?? []).filter((it) => it && it.titulo);
+const nota = campo(s, 'nota');
+const TONOS = ['banda-naranja', 'banda-azul', 'banda-arena', 'banda-noche'];
+const BOTONES = ['btn-azul', 'btn', 'btn-azul', 'btn'];
+const columnas = items.length >= 4 ? 'md:grid-cols-2 xl:grid-cols-4' : items.length === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : items.length === 2 ? 'md:grid-cols-2' : '';
+// En tableta van de dos en dos: si sobra uno, ocupa la fila entera.
+const ultimoAncho = (i: number) => items.length % 2 === 1 && items.length > 1 && i === items.length - 1;
+---
+
+{
+  s && (
+    <section id={Astro.props.id}>
+      <div class="contenedor seccion pb-12 md:pb-16">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} />
+          {s.texto && <p class="max-w-md text-lg opacity-85 lg:text-right">{s.texto}</p>}
+        </div>
+      </div>
+      {items.length > 0 && (
+        <ul class:list={['grid', columnas]}>
+          {items.map((it, i) => (
+            <li class:list={['panel flex', TONOS[i % TONOS.length], { 'md:col-span-2 lg:col-span-1': ultimoAncho(i) }]}>
+              <div class="flex w-full max-w-[34rem] flex-col px-4 py-14 sm:px-8 md:px-10 md:py-20 lg:px-14">
+                <div class="flex items-center justify-between">
+                  <span class="panel-icono grid h-16 w-16 place-items-center rounded-full"><Icono nombre={it.icono} tam={30} /></span>
+                  <span class="font-display text-5xl font-bold opacity-25" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <h3 class="mt-8 text-[clamp(2rem,3.4vw,2.9rem)]">{it.titulo}</h3>
+                {it.texto && <p class="mt-4 text-lg opacity-90">{it.texto}</p>}
+                <div class="flex-1" aria-hidden="true" />
+                <a
+                  class:list={[BOTONES[i % BOTONES.length], 'mt-8 self-start whitespace-nowrap md:mt-10']}
+                  href={it.url || '/#contacto'}
+                  {...(externo(it.url) ? { rel: 'noopener', target: '_blank' } : {})}
+                >
+                  {it.boton || it.titulo} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+      {nota && (
+        <div class="banda-cielo">
+          <p class="contenedor flex items-start gap-3 py-6 text-[.98rem]">
+            <Icono nombre="escudo" class="mt-0.5 shrink-0 text-primario" tam={22} />
+            <span>{nota}</span>
+          </p>
+        </div>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .panel > div { min-height: 100%; }
+  .panel h3 + p { max-width: 32ch; }
+  .panel .panel-icono { background: color-mix(in srgb, currentColor 14%, transparent); }
+  @media (min-width: 768px) { .panel { min-height: 32rem; } .panel h3 { margin-top: 2.5rem; } }
+</style>

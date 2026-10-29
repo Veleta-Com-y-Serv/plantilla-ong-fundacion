@@ -1,0 +1,78 @@
+---
+// Transparencia en banda azul: a la izquierda, titular, el reparto de los fondos en una barra a todo el ancho
+// de la columna (`reparto[]` {titulo, porcentaje «84 %»}) y un botón; a la derecha, los compromisos
+// (`items[]` {titulo, texto, icono, url opcional}) en filas con filete. Lo que falte no se pinta.
+import { seccion, externo } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const reparto = (s?.reparto ?? []).filter((r) => r && r.titulo);
+const items = (s?.items ?? []).filter((it) => it && it.titulo);
+const valor = (t?: string) => {
+  const n = parseFloat(String(t ?? '').replace(',', '.').replace(/[^\d.]/g, ''));
+  return Number.isFinite(n) && n > 0 ? n : 0;
+};
+const total = reparto.reduce((a, r) => a + valor(r.porcentaje), 0);
+const TONOS = ['var(--c-acento)', 'color-mix(in srgb, var(--c-acento) 55%, #fff)', 'color-mix(in srgb, #fff 55%, transparent)', 'color-mix(in srgb, #fff 30%, transparent)'];
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} class="banda-azul">
+      <div class:list={['grid gap-14', { 'lg:grid-cols-[1.1fr_1fr] lg:gap-20': items.length > 0 }]}>
+        <div>
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+          {reparto.length > 0 && (
+            <div class="mt-12">
+              {total > 0 && (
+                <div class="flex h-6 w-full overflow-hidden rounded-full bg-white/10" aria-hidden="true">
+                  {reparto.map((r, i) => <span style={`width:${(valor(r.porcentaje) / total) * 100}%;background:${TONOS[i % TONOS.length]}`} />)}
+                </div>
+              )}
+              <ul class="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3">
+                {reparto.map((r, i) => (
+                  <li class="border-l-4 pl-4" style={`border-color:${TONOS[i % TONOS.length]}`}>
+                    {r.porcentaje && <p class="font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-none">{r.porcentaje}</p>}
+                    <p class="mt-2 font-semibold text-white/85">{r.titulo}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {s.cta?.url && <a class="btn mt-12" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+        {items.length > 0 && (
+          <ul class="self-center border-t border-white/25">
+            {items.map((it) => {
+              const Etiqueta = it.url ? 'a' : 'div';
+              return (
+                <li class="border-b border-white/25">
+                  <Etiqueta
+                    class:list={['fila flex items-start gap-5 py-6', { 'fila--enlace': it.url }]}
+                    {...(it.url ? { href: it.url, ...(externo(it.url) ? { rel: 'noopener', target: '_blank' } : {}) } : {})}
+                  >
+                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-acento text-[var(--c-sobre-acento)]"><Icono nombre={it.icono} tam={22} /></span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-xl font-bold">{it.titulo}</span>
+                      {it.texto && <span class="mt-1 block text-white/80">{it.texto}</span>}
+                    </span>
+                    {it.url && <span class="fila-flecha mt-2 text-2xl" aria-hidden="true">→</span>}
+                  </Etiqueta>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .fila--enlace { text-decoration: none; }
+  .fila-flecha { transition: transform .2s ease; }
+  .fila--enlace:hover .fila-flecha { transform: translateX(.35rem); }
+  .fila--enlace:hover span.block:first-child { text-decoration: underline; text-underline-offset: 5px; }
+</style>

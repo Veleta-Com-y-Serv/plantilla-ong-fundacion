@@ -1,0 +1,95 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: ong-fundacion
+nombre: ONG y fundación
+descripcion: "Web humana y a todo color para ONG, fundaciones y protectoras: impacto, proyectos, donativos y voluntariado."
+sectores:
+  - { id: ong, nombre: ONG }
+  - { id: fundacion, nombre: Fundación }
+  - { id: voluntariado, nombre: Voluntariado }
+  - { id: cooperacion, nombre: Cooperación }
+  - { id: protectora, nombre: Protectora de animales }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: cifras, nombre: Nuestro impacto }
+  - { id: sobre, nombre: Quiénes somos }
+  - { id: proyectos, nombre: Proyectos }
+  - { id: cita, nombre: Cita destacada }
+  - { id: ayudar, nombre: Cómo ayudar }
+  - { id: equipo, nombre: Equipo }
+  - { id: transparencia, nombre: Transparencia }
+  - { id: noticias, nombre: Noticias }
+  - { id: opiniones, nombre: Opiniones }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: contacto, nombre: Contacto }
+estilo: humano
+plan_minimo: gratis
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-ong-fundacion.noexpertise.com
+activa: true
+orden: 430
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: entidad
+    titulo: "Tu entidad"
+    pregunta: "¿Cómo se llama vuestra ONG o fundación, a quién ayudáis y dónde?"
+    ayuda: "Cuéntalo como se lo contarías a un vecino: qué problema atendéis y cómo."
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.titulo_destacado, secciones.hero.texto, secciones.hero.sello]
+  - id: contacto
+    titulo: "Cómo os encuentran"
+    pregunta: "¿Dónde está vuestra sede y cómo os pueden llamar o escribir?"
+    ayuda: "Solo lo que quieras que se vea. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.facebook, redes.linkedin]
+  - id: sobre
+    titulo: "Quiénes sois"
+    pregunta: "¿Cómo empezasteis y qué os hace diferentes? Si queréis, tres valores que os definan."
+    tipo: texto
+    campos: [secciones.sobre.titulo, secciones.sobre.titulo_destacado, secciones.sobre.texto, secciones.sobre.items]
+  - id: proyectos
+    titulo: "Vuestros proyectos"
+    pregunta: "¿Qué proyectos o programas tenéis? Uno por línea, con qué hacéis y dónde."
+    ayuda: "Las fotos las eliges en el paso de fotos o luego en Contenido."
+    tipo: lista
+    campos: [secciones.proyectos.proyectos]
+  - id: ayudar
+    titulo: "Cómo ayudar"
+    pregunta: "¿Cómo puede colaborar la gente con vosotros? Una forma por línea: donativos, socios, voluntariado, empresas…"
+    ayuda: "Cada forma sale en un panel de color con su botón. Si tenéis Bizum o una página de donativos, dilo."
+    tipo: lista
+    campos: [secciones.ayudar.items]
+  - id: transparencia
+    titulo: "Transparencia"
+    pregunta: "¿Qué publicáis para que se vea a dónde va el dinero? Auditoría, memoria, registro…"
+    ayuda: "Si tenéis el reparto de los fondos, dilo con sus porcentajes."
+    tipo: texto
+    campos: [secciones.transparencia.titulo, secciones.transparencia.texto, secciones.transparencia.items, secciones.transparencia.reparto]
+  - id: equipo
+    titulo: "El equipo"
+    pregunta: "¿Quién forma el equipo y el patronato? Nombre y qué hace cada uno, uno por línea."
+    ayuda: "Las fotos las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.equipo.personas]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué os pregunta la gente antes de colaborar o de pedir ayuda? Escribe cada pregunta y lo que respondéis."
+    ayuda: "Por ejemplo: si los donativos desgravan o cuánto tiempo pide el voluntariado."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada y, si quieres, las de quiénes sois, la cita y las noticias."
+    ayuda: "Mejor fotos de manos, espaldas o grupos de lejos que caras reconocibles, salvo que tengas permiso."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.sobre.imagen, secciones.cita.imagen]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

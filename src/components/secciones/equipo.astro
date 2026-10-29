@@ -1,0 +1,40 @@
+---
+// Equipo: cabecera partida y fila de retratos a todo el ancho del contenedor (hasta 5 por fila), con la
+// esquina «de casa» en cada foto. Cada persona: `personas[]` {nombre, cargo, foto}. Sin personas, solo la cabecera.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const personas = (s?.personas ?? []).filter((p) => p && p.nombre);
+const columnas = personas.length >= 5 ? 'lg:grid-cols-5' : personas.length === 4 ? 'lg:grid-cols-4' : '';
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id}>
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} />
+        {s.texto && <p class="max-w-md text-lg opacity-85 lg:text-right">{s.texto}</p>}
+      </div>
+      {personas.length > 0 && (
+        <ul class:list={['mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:mt-16 md:gap-x-6', columnas]}>
+          {personas.map((p, i) => (
+            <li>
+              <Imagen
+                src={p.foto}
+                alt={p.nombre}
+                ancho={600}
+                alto={720}
+                class:list={['aspect-[5/6] w-full object-cover', i % 2 ? 'rounded-tl-[3.5rem]' : 'rounded-tr-[3.5rem]']}
+              />
+              <p class="mt-4 font-display text-xl font-bold leading-tight md:text-2xl">{p.nombre}</p>
+              {p.cargo && <p class="mt-1 text-[.95rem] opacity-75">{p.cargo}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </Seccion>
+  )
+}

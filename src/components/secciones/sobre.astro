@@ -1,0 +1,43 @@
+---
+// Quiénes somos: fila 50/50 a sangre. La foto toca el borde izquierdo de la ventana (esquina «de casa»
+// abajo a la derecha); a la derecha, titular con final a pincel, párrafos, valores numerados y un enlace.
+// Campos: antetitulo, titulo, titulo_destacado, texto (párrafos), imagen, items[] {titulo, texto}, cta.
+import { seccion, campo, parrafos } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const destacado = campo(s, 'titulo_destacado');
+const items = (s?.items ?? []).filter((it) => it && it.titulo);
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class:list={['grid', { 'md:grid-cols-2': s.imagen }]}>
+      {s.imagen && (
+        <div class="relative min-h-[22rem] sm:min-h-[28rem] md:min-h-full">
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={1500} class="esquina-bd absolute inset-0 h-full w-full object-cover" />
+        </div>
+      )}
+      <div class:list={['mitad', s.imagen ? 'mitad--der' : 'contenedor']}>
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} destacado={destacado} />
+        <div class="mt-7 max-w-2xl space-y-4 text-lg opacity-90">
+          {parrafos(s.texto).map((p) => <p>{p}</p>)}
+        </div>
+        {items.length > 0 && (
+          <ol class="mt-10 grid gap-0 sm:grid-cols-3 sm:gap-6 md:grid-cols-1 md:gap-0 xl:grid-cols-3 xl:gap-6">
+            {items.map((it, i) => (
+              <li class="border-t-2 border-[var(--c-linea)] py-5">
+                <p class="font-display text-3xl font-bold text-acento" aria-hidden="true">{String(i + 1).padStart(2, '0')}</p>
+                <p class="mt-2 text-lg font-bold">{it.titulo}</p>
+                {it.texto && <p class="mt-1 opacity-80">{it.texto}</p>}
+              </li>
+            ))}
+          </ol>
+        )}
+        {s.cta?.url && <a class="enlace-flecha mt-6" href={s.cta.url}>{s.cta.texto} <span aria-hidden="true">→</span></a>}
+      </div>
+    </section>
+  )
+}

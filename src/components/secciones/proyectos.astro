@@ -1,0 +1,64 @@
+---
+// Proyectos: cabecera sobre azul cielo y, debajo, un mosaico de fotos de borde a borde (sin márgenes),
+// con el primer proyecto en grande. Sobre cada foto, el lugar en una etiqueta naranja, el título y el texto.
+// Cada proyecto: `proyectos[]` {titulo, texto, lugar, imagen}. Sin proyectos solo queda la cabecera.
+import { seccion } from '../../data/site';
+import { altFicha } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const proyectos = (s?.proyectos ?? []).filter((p) => p && p.titulo);
+const n = proyectos.length;
+
+/** Reparto del mosaico en escritorio (4 columnas) según cuántos proyectos haya, para que no queden huecos. */
+function celda(i: number): string {
+  if (n === 1) return 'lg:col-span-4 lg:row-span-2';
+  if (n === 2) return 'lg:col-span-2 lg:row-span-2';
+  if (i === 0) return 'sm:col-span-2 lg:col-span-2 lg:row-span-2';
+  if (n === 3) return 'lg:col-span-2';
+  if (n === 4 && i === 1) return 'lg:col-span-2';
+  return '';
+}
+const grande = (i: number) => i === 0 || n <= 2;
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="banda-cielo">
+      <div class="contenedor seccion pb-12 md:pb-16">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+          {s.cta?.url && <a class="btn-azul shrink-0 self-start md:self-end" href={s.cta.url}>{s.cta.texto}</a>}
+        </div>
+      </div>
+      {n > 0 && (
+        <ul class="mosaico grid gap-[3px] sm:grid-cols-2 lg:auto-rows-[minmax(20rem,auto)] lg:grid-cols-4">
+          {proyectos.map((p, i) => (
+            <li class:list={['proyecto banda-azul relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden', celda(i)]}>
+              {p.imagen && <Imagen src={p.imagen} alt={altFicha(p)} ancho={grande(i) ? 1400 : 900} alto={grande(i) ? 1400 : 900} class="proyecto-foto absolute inset-0 -z-20 h-full w-full object-cover" />}
+              <div class="proyecto-velo absolute inset-0 -z-10" aria-hidden="true" />
+              <div class:list={['p-5 md:p-7', { 'lg:p-12': grande(i) }]}>
+                {p.lugar && (
+                  <p class="inline-flex items-center gap-1.5 rounded-full bg-acento px-3 py-1 text-sm font-bold text-[var(--c-sobre-acento)]">
+                    <Icono nombre="mapa" tam={15} />{p.lugar}
+                  </p>
+                )}
+                <h3 class:list={['mt-4 text-white', grande(i) ? 'text-[clamp(2rem,4.5vw,3.6rem)]' : 'text-[1.75rem]']}>{p.titulo}</h3>
+                {p.texto && <p class:list={['mt-3 text-white/90', grande(i) ? 'max-w-xl text-lg' : 'text-[.98rem]']}>{p.texto}</p>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .mosaico { background: var(--c-cielo); }
+  .proyecto-velo { background: linear-gradient(to top, color-mix(in srgb, var(--c-noche) 92%, transparent) 0%, color-mix(in srgb, var(--c-noche) 45%, transparent) 55%, transparent 100%); }
+  .proyecto-foto { transition: transform .6s ease; }
+  .proyecto:hover .proyecto-foto { transform: scale(1.04); }
+</style>

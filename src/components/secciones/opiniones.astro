@@ -1,0 +1,47 @@
+---
+// Opiniones en banda arena: titular centrado y las opiniones en columnas separadas por filetes, con comillas
+// naranjas y el texto en serif. Cada una: `testimonios[]` {texto, autor, cargo}. Sin opiniones no se pinta.
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const opiniones = (s?.testimonios ?? []).filter((t) => t && t.texto);
+const columnas = opiniones.length >= 3 ? 'lg:grid-cols-3' : opiniones.length === 2 ? 'md:grid-cols-2' : '';
+---
+
+{
+  s && opiniones.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda-arena">
+      <Titular alinear="centro" antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      <ul class:list={['opiniones mt-12 grid md:mt-16', columnas]}>
+        {opiniones.map((o) => (
+          <li class="opinion">
+            <figure class="flex h-full flex-col">
+              <span class="font-display text-7xl leading-[.6] text-acento" aria-hidden="true">“</span>
+              <blockquote class="mt-4 flex-1 font-display text-[1.4rem] leading-snug md:text-[1.55rem]">{o.texto}</blockquote>
+              {(o.autor || o.cargo) && (
+                <figcaption class="mt-8">
+                  {o.autor && <strong class="block">{o.autor}</strong>}
+                  {o.cargo && <span class="block text-[.95rem] opacity-75">{o.cargo}</span>}
+                </figcaption>
+              )}
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </Seccion>
+  )
+}
+
+<style>
+  .opinion { padding-block: 2rem; border-top: 2px solid color-mix(in srgb, var(--c-acento) 35%, transparent); }
+  @media (min-width: 1024px) {
+    .opiniones.lg\:grid-cols-3 .opinion { padding: 0 2.5rem; border-top: 0; border-left: 2px solid color-mix(in srgb, var(--c-acento) 35%, transparent); }
+    .opiniones.lg\:grid-cols-3 .opinion:first-child { border-left: 0; padding-left: 0; }
+  }
+  @media (min-width: 768px) {
+    .opiniones.md\:grid-cols-2 .opinion { padding: 0 2.5rem; border-top: 0; border-left: 2px solid color-mix(in srgb, var(--c-acento) 35%, transparent); }
+    .opiniones.md\:grid-cols-2 .opinion:first-child { border-left: 0; padding-left: 0; }
+  }
+</style>

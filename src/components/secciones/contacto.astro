@@ -1,0 +1,34 @@
+---
+// Contacto partido a sangre: mitad azul con titular, teléfono grande y datos; mitad azul cielo con el formulario.
+import { seccion, site, tel, mapa, whatsapp } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const c = site.contacto;
+---
+
+{
+  s && (
+    <section id={Astro.props.id} class="grid md:grid-cols-2">
+      <div class="banda-azul mitad mitad--izq">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {c.telefono && (
+          <a href={tel(c.telefono)} class="mt-10 block font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-none no-underline hover:text-acento">{c.telefono}</a>
+        )}
+        <ul class="mt-10 grid gap-5 text-lg">
+          {c.direccion && (
+            <li class="flex gap-4"><Icono nombre="mapa" class="mt-0.5 shrink-0 text-acento" /><a href={mapa(c.direccion)} rel="noopener" target="_blank" class="underline-offset-4 hover:underline">{c.direccion}</a></li>
+          )}
+          {c.horario && <li class="flex gap-4"><Icono nombre="reloj" class="mt-0.5 shrink-0 text-acento" /><span>{c.horario}</span></li>}
+          {c.whatsapp && <li class="flex gap-4"><Icono nombre="whatsapp" class="mt-0.5 shrink-0 text-acento" /><a href={whatsapp(c.whatsapp)} rel="noopener" target="_blank" class="underline-offset-4 hover:underline">WhatsApp</a></li>}
+          {c.email && <li class="flex gap-4"><Icono nombre="correo" class="mt-0.5 shrink-0 text-acento" /><a class="break-all underline-offset-4 hover:underline" href={`mailto:${c.email}`}>{c.email}</a></li>}
+        </ul>
+      </div>
+      <div class="banda-cielo mitad mitad--der">
+        <FormularioContacto boton="Enviar mensaje" class="max-w-xl" />
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,41 @@
+---
+// Preguntas frecuentes: titular fijo a la izquierda y acordeón nativo <details> a la derecha, con filetes y un
+// botón redondo naranja, sin JavaScript. Campos: `preguntas[]` (pregunta, respuesta). Sin preguntas no se pinta.
+// También sirve de diseño para apartados nuevos (`tipo: preguntas`).
+import { seccion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const preguntas = s ? s.preguntas.filter((p) => p && p.pregunta) : [];
+---
+
+{
+  s && preguntas.length > 0 && (
+    <Seccion id={Astro.props.id}>
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.45fr] lg:gap-20">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        </div>
+        <div class="border-t-2 border-[var(--c-linea)]">
+          {preguntas.map((p, i) => (
+            <details class="faq border-b-2 border-[var(--c-linea)]" open={i === 0}>
+              <summary class="flex min-h-[3.5rem] items-center justify-between gap-5 py-6 font-display text-[1.3rem] font-bold leading-snug md:text-[1.55rem]">
+                {p.pregunta}
+                <span class="faq-signo grid h-11 w-11 shrink-0 place-items-center rounded-full bg-acento text-2xl font-normal text-[var(--c-sobre-acento)]" aria-hidden="true">+</span>
+              </summary>
+              {p.respuesta && <p class="max-w-2xl pb-7 text-lg opacity-85">{p.respuesta}</p>}
+            </details>
+          ))}
+        </div>
+      </div>
+    </Seccion>
+  )
+}
+
+<style>
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq-signo { transition: transform 0.2s ease; font-family: var(--fuente-texto); }
+  .faq[open] .faq-signo { transform: rotate(45deg); }
+</style>
