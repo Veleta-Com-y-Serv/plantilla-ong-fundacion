@@ -1,13 +1,57 @@
 [
-  { "fichero": "fotos/hero.jpg", "aspecto": "16:9", "prompt": "Voluntarios de espaldas caminando por una calle residencial de Oviedo al atardecer de invierno, uno lleva una bolsa de la compra y otro coge del brazo a una persona mayor con abrigo y bastón, fachadas de piedra y balcones acristalados asturianos, luz cálida de farolas, suelo mojado por la lluvia, encuadre amplio y horizontal con mucho cielo a la izquierda, sin caras visibles, sin texto ni logotipos" },
-  { "fichero": "fotos/sobre.jpg", "aspecto": "3:4", "prompt": "Manos de una persona mayor y de una persona joven compartiendo una taza de café sobre una mesa de madera con mantel de cuadros en una cocina antigua, luz suave de ventana, tonos cálidos con un toque de azul en la taza, plano cercano vertical, sin caras, sin texto ni logotipos" },
-  { "fichero": "fotos/proyecto-1.jpg", "aspecto": "1:1", "prompt": "Persona mayor sentada en un banco de un parque arbolado en otoño junto a una voluntaria con chaqueta naranja, vistas de espaldas, hojas amarillas en el suelo, luz de mañana, encuadre cuadrado, sin caras reconocibles, sin texto ni logotipos" },
-  { "fichero": "fotos/proyecto-2.jpg", "aspecto": "4:3", "prompt": "Estanterías de un almacén solidario de barrio con cajas de cartón llenas de fruta, verdura, legumbres y productos de higiene ordenados, una mesa con bolsas preparadas, luz fluorescente cálida, sin gente, sin texto legible ni logotipos ni marcas" },
-  { "fichero": "fotos/proyecto-3.jpg", "aspecto": "4:3", "prompt": "Mesa de un aula de refuerzo escolar por la tarde con cuadernos abiertos, lápices de colores, un estuche y una merienda de pan y fruta, manos de niños escribiendo vistas desde arriba, luz cálida de lámpara, sin caras, sin texto legible ni logotipos" },
-  { "fichero": "fotos/proyecto-4.jpg", "aspecto": "4:3", "prompt": "Sala luminosa de un centro social con sillas en semicírculo, una pizarra blanca vacía y carpetas sobre una mesa, preparada para un taller de búsqueda de empleo, ventanales con vistas a edificios, sin gente, sin texto legible ni logotipos" },
-  { "fichero": "fotos/proyecto-5.jpg", "aspecto": "4:3", "prompt": "Grifo de agua nuevo de una fuente comunitaria en una aldea rural de montaña en Centroamérica, cubo de plástico azul debajo, camino de tierra roja, casas sencillas de adobe y vegetación tropical al fondo, luz de mañana, sin personas, sin texto ni logotipos" },
-  { "fichero": "fotos/cita.jpg", "aspecto": "21:9", "prompt": "Puerta de madera de una casa antigua entreabierta con luz cálida saliendo del interior, felpudo y una maceta con geranios, fachada de piedra en una calle tranquila al anochecer, mucho espacio libre a la izquierda, encuadre panorámico, sin personas, sin texto ni logotipos ni números de portal" },
-  { "fichero": "fotos/noticia-1.jpg", "aspecto": "4:3", "prompt": "Grupo de voluntarios vistos de espaldas en una sala de reuniones de una fundación, sentados alrededor de una mesa larga con tazas y libretas, chalecos naranjas colgados en una silla, luz de tarde, sin caras reconocibles, sin texto legible ni logotipos" },
-  { "fichero": "fotos/noticia-2.jpg", "aspecto": "4:3", "prompt": "Carros de supermercado y cajas de cartón llenas de alimentos no perecederos, legumbres, aceite y leche, apilados a la entrada de un colegio durante una recogida solidaria, luz de mañana de otoño, sin personas, sin texto legible ni marcas ni logotipos" },
-  { "fichero": "fotos/noticia-3.jpg", "aspecto": "4:3", "prompt": "Patio de una escuela rural en Nicaragua con un depósito de agua nuevo de color azul sobre una estructura de ladrillo, un lavadero de cemento con varios grifos, montañas verdes al fondo, cielo con nubes, sin personas, sin texto ni logotipos" }
+  {
+    "fichero": "fotos/hero.jpg",
+    "aspecto": "16:9",
+    "prompt": "Voluntarios de espaldas caminando por una calle residencial de Oviedo al atardecer de invierno, uno lleva una bolsa de la compra y otro coge del brazo a una persona mayor con abrigo y bastón, fachadas de piedra y balcones acristalados asturianos, luz cálida de farolas, suelo mojado por la lluvia, encuadre amplio y horizontal con mucho cielo a la izquierda, sin caras visibles, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/sobre.jpg",
+    "aspecto": "3:4",
+    "prompt": "Manos de una persona mayor y de una persona joven compartiendo una taza de café sobre una mesa de madera con mantel de cuadros en una cocina antigua, luz suave de ventana, tonos cálidos con un toque de azul en la taza, plano cercano vertical, sin caras, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/proyecto-1.jpg",
+    "aspecto": "1:1",
+    "prompt": "Persona mayor sentada en un banco de un parque arbolado en otoño junto a una voluntaria con chaqueta naranja, vistas de espaldas, hojas amarillas en el suelo, luz de mañana, encuadre cuadrado, sin caras reconocibles, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/proyecto-2.jpg",
+    "aspecto": "4:3",
+    "prompt": "Estanterías de un almacén solidario de barrio con cajas de cartón llenas de fruta, verdura, legumbres y productos de higiene ordenados, una mesa con bolsas preparadas, luz fluorescente cálida, sin gente, sin texto legible ni logotipos ni marcas"
+  },
+  {
+    "fichero": "fotos/proyecto-3.jpg",
+    "aspecto": "4:3",
+    "prompt": "Mesa de madera de un aula de refuerzo escolar por la tarde con cuadernos abiertos, lápices de colores, un estuche y un plato con pan y fruta, manos de niños escribiendo vistas desde arriba, luz cálida de lámpara, fotografía espontánea de documental, sin marcas de agua, sin caras, sin texto legible ni logotipos"
+  },
+  {
+    "fichero": "fotos/proyecto-4.jpg",
+    "aspecto": "4:3",
+    "prompt": "Sala luminosa de un centro social con sillas en semicírculo, una pizarra blanca vacía y carpetas sobre una mesa, preparada para un taller de búsqueda de empleo, ventanales con vistas a edificios, sin gente, sin texto legible ni logotipos"
+  },
+  {
+    "fichero": "fotos/proyecto-5.jpg",
+    "aspecto": "4:3",
+    "prompt": "Grifo de agua nuevo de una fuente comunitaria en una aldea rural de montaña en Centroamérica, cubo de plástico azul debajo, camino de tierra roja, casas sencillas de adobe y vegetación tropical al fondo, luz de mañana, sin personas, sin texto ni logotipos"
+  },
+  {
+    "fichero": "fotos/cita.jpg",
+    "aspecto": "21:9",
+    "prompt": "Puerta de madera de una casa antigua entreabierta con luz cálida saliendo del interior, felpudo liso y una maceta con geranios, fachada de piedra lisa en una calle tranquila al anochecer, mucho espacio libre a la izquierda, encuadre panorámico, sin personas, la piedra sobre el dintel completamente lisa y vacía, sin texto, sin números, sin placas ni logotipos"
+  },
+  {
+    "fichero": "fotos/noticia-1.jpg",
+    "aspecto": "4:3",
+    "prompt": "Grupo de voluntarios vistos de espaldas en una sala de reuniones de una fundación, sentados alrededor de una mesa larga con tazas y libretas, chalecos naranjas colgados en una silla, luz de tarde, sin caras reconocibles, sin texto legible ni logotipos"
+  },
+  {
+    "fichero": "fotos/noticia-2.jpg",
+    "aspecto": "4:3",
+    "prompt": "Carros de supermercado y cajas de cartón llenas de alimentos no perecederos, legumbres, aceite y leche, apilados a la entrada de un colegio durante una recogida solidaria, luz de mañana de otoño, sin personas, sin texto legible ni marcas ni logotipos"
+  },
+  {
+    "fichero": "fotos/noticia-3.jpg",
+    "aspecto": "4:3",
+    "prompt": "Patio de una escuela rural en Nicaragua con un depósito de agua nuevo de color azul sobre una estructura de ladrillo, un lavadero de cemento con varios grifos, montañas verdes al fondo, cielo con nubes, sin personas, sin texto ni logotipos"
+  }
 ]
