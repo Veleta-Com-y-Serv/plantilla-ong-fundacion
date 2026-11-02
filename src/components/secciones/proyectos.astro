@@ -2,7 +2,9 @@
 // Proyectos: cabecera sobre azul cielo y, debajo, un mosaico de fotos de borde a borde (sin márgenes),
 // con el primer proyecto en grande. Sobre cada foto, el lugar en una etiqueta naranja, el título y el texto.
 // Cada proyecto: `proyectos[]` {titulo, texto, lugar, imagen}. Sin proyectos solo queda la cabecera.
+// Los proyectos con `detalle` tienen página propia (/proyectos/<slug>/): el título es un enlace y la tarjeta entera es clicable.
 import { seccion } from '../../data/site';
+import { enlaceDe } from '../../lib/paginas';
 import { altFicha } from '../../lib/seo';
 import Imagen from '../ui/Imagen.astro';
 import Titular from '../ui/Titular.astro';
@@ -45,8 +47,9 @@ const grande = (i: number) => i === 0 || n <= 2;
                     <Icono nombre="mapa" tam={15} />{p.lugar}
                   </p>
                 )}
-                <h3 class:list={['mt-4 text-white', grande(i) ? 'text-[clamp(2rem,4.5vw,3.6rem)]' : 'text-[1.75rem]']}>{p.titulo}</h3>
+                <h3 class:list={['mt-4 text-white', grande(i) ? 'text-[clamp(2rem,4.5vw,3.6rem)]' : 'text-[1.75rem]']}>{enlaceDe(p) ? <a href={enlaceDe(p)} class="proyecto-enlace">{p.titulo}</a> : p.titulo}</h3>
                 {p.texto && <p class:list={['mt-3 text-white/90', grande(i) ? 'max-w-xl text-lg' : 'text-[.98rem]']}>{p.texto}</p>}
+                {enlaceDe(p) && <span class="proyecto-ver mt-4 inline-flex items-center gap-1.5 font-bold text-acento" aria-hidden="true">Ver más <Icono nombre="flecha" tam={16} /></span>}
               </div>
             </li>
           ))}
@@ -61,4 +64,8 @@ const grande = (i: number) => i === 0 || n <= 2;
   .proyecto-velo { background: linear-gradient(to top, color-mix(in srgb, var(--c-noche) 92%, transparent) 0%, color-mix(in srgb, var(--c-noche) 45%, transparent) 55%, transparent 100%); }
   .proyecto-foto { transition: transform .6s ease; }
   .proyecto:hover .proyecto-foto { transform: scale(1.04); }
+  .proyecto-enlace { color: inherit; text-decoration: none; }
+  .proyecto-enlace::after { content: ""; position: absolute; inset: 0; }
+  .proyecto-enlace:focus-visible { outline: none; }
+  .proyecto:has(.proyecto-enlace:focus-visible) { outline: 3px solid var(--c-acento); outline-offset: -6px; }
 </style>

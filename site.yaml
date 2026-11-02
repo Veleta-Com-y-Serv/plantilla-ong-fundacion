@@ -75,11 +75,59 @@ secciones:
     titulo: Nuestros proyectos
     texto: "Cinco programas que se sostienen con cuotas de socios, donativos y el tiempo de mucha gente."
     proyectos:
-      - { titulo: Nadie Solo, texto: "Visitas semanales y una llamada diaria a personas mayores que viven solas. Paseos, recados y compañía.", lugar: "Oviedo y Siero", imagen: /fotos/proyecto-1.jpg }
-      - { titulo: Despensa Llar, texto: "Alimentos frescos y productos de higiene cada quince días para familias derivadas por servicios sociales.", lugar: Pumarín y Ventanielles, imagen: /fotos/proyecto-2.jpg }
-      - { titulo: Deberes en compañía, texto: "Refuerzo escolar por las tardes para niños de primaria, con merienda incluida.", lugar: Centro social de La Corredoria, imagen: /fotos/proyecto-3.jpg }
+      - titulo: Nadie Solo
+        texto: "Visitas semanales y una llamada diaria a personas mayores que viven solas. Paseos, recados y compañía."
+        lugar: "Oviedo y Siero"
+        imagen: /fotos/proyecto-1.jpg
+        imagenes: "/fotos/proyecto-1.jpg; /fotos/cita.jpg"
+        detalle: |
+          Nadie Solo nació de una observación sencilla: en muchos portales del barrio hay vecinos mayores que pasan días enteros sin hablar con nadie. El programa pone a una persona voluntaria al lado de cada uno de ellos para que tenga una cara conocida a la que esperar.
+
+          Cada voluntario hace una visita semanal, siempre a la misma hora, y una llamada diaria breve para preguntar qué tal ha ido la noche. En las visitas se pasea, se acompaña al médico o al mercado, se hacen recados y, sobre todo, se conversa. Si algo no va bien, el equipo técnico lo sabe ese mismo día y avisa a la familia o a los servicios sociales.
+
+          Pueden participar personas mayores que vivan solas en Oviedo y Siero, sin necesidad de ningún trámite complicado: basta una llamada o una visita a nuestra sede. Los voluntarios reciben formación antes de empezar, se reúnen con el equipo cada mes para compartir cómo van las visitas y siempre empiezan acompañados por alguien con experiencia.
+
+          Lo que se espera de una visita no es gran cosa y lo es todo: que alguien llame a la puerta y se quede un rato.
+      - titulo: Despensa Llar
+        texto: "Alimentos frescos y productos de higiene cada quince días para familias derivadas por servicios sociales."
+        lugar: Pumarín y Ventanielles
+        imagen: /fotos/proyecto-2.jpg
+        imagenes: "/fotos/proyecto-2.jpg; /fotos/sobre.jpg"
+        detalle: |
+          La Despensa Llar reparte alimentos frescos y productos de higiene a familias que atraviesan un mal momento económico. No es un economato ni un reparto masivo: cada hogar recibe una cesta pensada para su composición, con fruta, verdura, huevos, legumbres y lo básico para la casa.
+
+          Las familias llegan derivadas por los servicios sociales del barrio, que valoran cada caso y nos lo trasladan con discreción. La entrega se hace cada quince días, en un horario con cita para evitar colas, y quien la recibe puede elegir entre varias opciones cuando hay más de un producto disponible, porque la dignidad también se cuida en los pequeños gestos.
+
+          Los alimentos frescos proceden de comercios y huertas de la zona que nos entregan excedentes, y se completan con compras que financiamos con las cuotas de los socios. Un grupo de voluntarios prepara las cestas y otro se encarga del reparto en Pumarín y Ventanielles.
+
+          Si tienes un comercio y quieres colaborar con excedentes, o prefieres ayudar a preparar las cestas, escríbenos y te explicamos cómo encajar con tu horario.
+      - titulo: Deberes en compañía
+        texto: "Refuerzo escolar por las tardes para niños de primaria, con merienda incluida."
+        lugar: Centro social de La Corredoria
+        imagen: /fotos/proyecto-3.jpg
+        imagenes: "/fotos/proyecto-3.jpg; /fotos/noticia-1.jpg"
+        detalle: |
+          Deberes en compañía es un espacio tranquilo donde niños y niñas de primaria hacen los deberes con ayuda, después del colegio y con una merienda sana para empezar. Está pensado para quienes en casa no tienen quien les eche una mano o un lugar donde concentrarse.
+
+          Cada tarde, un pequeño grupo de voluntarios se reparte a los niños de forma que cada uno trabaja siempre con la misma persona. Se repasan las tareas del día, se practica la lectura en voz alta y se resuelven las dudas con paciencia, sin presión y sin notas. Cuando termina el trabajo queda tiempo para jugar o leer juntos.
+
+          El programa se desarrolla en el centro social de La Corredoria y mantiene contacto con el profesorado para saber en qué conviene insistir. Las familias solo tienen que apuntar a su hijo en la sede y comprometerse a que asista con regularidad.
+
+          Buscamos voluntarios que disfruten con los niños y puedan comprometerse con una tarde fija. No hace falta ser maestro: sí ganas de escuchar y de explicar las cosas de otra manera hasta que se entiendan.
       - { titulo: Primer empleo, texto: "Orientación, cursos cortos y acompañamiento a entrevistas para jóvenes y mujeres.", lugar: Oviedo, imagen: /fotos/proyecto-4.jpg }
-      - { titulo: Agua en Matagalpa, texto: "Cooperación con dos comunidades rurales para llevar agua potable a la escuela y al centro de salud.", lugar: Matagalpa (Nicaragua), imagen: /fotos/proyecto-5.jpg }
+      - titulo: Agua en Matagalpa
+        texto: "Cooperación con dos comunidades rurales para llevar agua potable a la escuela y al centro de salud."
+        lugar: Matagalpa (Nicaragua)
+        imagen: /fotos/proyecto-5.jpg
+        imagenes: "/fotos/proyecto-5.jpg; /fotos/noticia-3.jpg"
+        detalle: |
+          En dos comunidades rurales de Matagalpa, conseguir agua limpia significaba caminar largos trayectos con cántaros y hervirla antes de beberla. Este proyecto de cooperación lleva agua potable hasta la escuela y el centro de salud, que son los lugares donde más se nota la diferencia.
+
+          El trabajo lo hacen las propias comunidades junto a una organización local con la que colaboramos desde hace tiempo. Se capta el agua de un manantial protegido, se conduce por tuberías hasta depósitos comunes y se instalan puntos de agua con grifo. Los vecinos forman un comité que se encarga del mantenimiento y de las cuotas mínimas para repuestos, de modo que la instalación no dependa de nadie de fuera.
+
+          Fundación Llar aporta la financiación, el seguimiento técnico y la formación en higiene para el profesorado y el personal sanitario. Cada año recibimos un informe con fotografías y cuentas que publicamos en nuestra sección de transparencia.
+
+          Con este proyecto, los niños dejan de faltar a clase por diarreas y el centro de salud puede atender partos y curas en condiciones seguras. Es el programa donde cada donativo se ve más pronto sobre el terreno.
     cta: { texto: Quiero colaborar, url: "/#ayudar" }
 
   cita:

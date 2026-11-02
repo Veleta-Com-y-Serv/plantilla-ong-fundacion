@@ -64,3 +64,8 @@ y rediseñada entera. Este fichero se queda en el repo: es lo que lee quien (per
 - [x] `template.yaml` con sectores con nombre, secciones, `asistente:` de 11 pasos.
 - [x] `fotos.json` (11 fotos) y placeholders SVG propios; favicon propio.
 - [ ] Fotos generadas y previews definitivas (paso de fotos; las de `preview/` son provisionales con placeholders).
+
+## Páginas propias (fichas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista.
