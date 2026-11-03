@@ -7,6 +7,7 @@ Web humana y a todo color para ONG, fundaciones y protectoras: impacto, proyecto
 - Todo a ancho completo: bandas de borde a borde en azul, naranja y claro; hero a casi pantalla completa con foto a sangre; mosaico de proyectos sin márgenes; filas 50/50 con la foto tocando el borde; contacto partido.
 - Ejemplo: Fundación Llar (Oviedo), ficticia.
 - SEO de base incluido (`src/lib/seo.ts`): canónica, og:image, JSON-LD (`NGO`) y de las preguntas frecuentes, `robots.txt`, `sitemap.xml` y `llms.txt`; `noindex` si `seo.indexable: false`.
+- Varias páginas (opcional, `paginas:` en la raíz de `site.yaml`): Inicio + una página por entrada (`{ ruta, titulo, secciones: "a; b" }`, hasta 6) con el menú hecho solo; reparto recomendado en `template.yaml → paginas`. Sin la clave, una sola página larga.
 - Contenido editable en `site.yaml`; metadatos y guion del asistente en `template.yaml`; fotos que generar en `fotos.json`; reglas para el agente en `CLAUDE.md`; brief de diseño en `DISEÑO.md`.
 
 ## Campos propios

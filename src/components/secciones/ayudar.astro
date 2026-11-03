@@ -5,6 +5,7 @@
 import { seccion, campo, externo } from '../../data/site';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
+import { enlace } from '../../lib/multipagina';
 interface Props { id: string }
 const s = seccion(Astro.props.id);
 const items = (s?.items ?? []).filter((it) => it && it.titulo);
@@ -39,7 +40,7 @@ const ultimoAncho = (i: number) => items.length % 2 === 1 && items.length > 1 &&
                 <div class="flex-1" aria-hidden="true" />
                 <a
                   class:list={[BOTONES[i % BOTONES.length], 'mt-8 self-start whitespace-nowrap md:mt-10']}
-                  href={it.url || '/#contacto'}
+                  href={it.url || enlace('/#contacto')}
                   {...(externo(it.url) ? { rel: 'noopener', target: '_blank' } : {})}
                 >
                   {it.boton || it.titulo} <span aria-hidden="true">→</span>
